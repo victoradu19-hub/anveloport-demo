@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="ANVELOPORT · Demo magazin online">
+<meta property="og:description" content="Machetă interactivă: anvelope noi și second hand, montaj în Constanța.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANVELOPORT — Anvelope noi și second hand · Montaj în Constanța</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0F1C;--ink2:#121A2E;--ink3:#1B2540;--line:#E6E8EE;--mute:#6B7385;--bg:#F5F6F9;--card:#fff;
+  --y:#FFC21A;--y2:#FFB000;--blue:#1E6BFF;--green:#12B76A;--red:#F04438;--orange:#F79009;
+  --r:14px;--sh:0 1px 2px rgba(10,15,28,.06),0 8px 24px rgba(10,15,28,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.disp{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select{font:inherit;color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:12px;font-weight:700;transition:.15s}
+.btn-y{background:var(--y);color:var(--ink)} .btn-y:hover{background:var(--y2);transform:translateY(-1px)}
+.btn-d{background:var(--ink);color:#fff} .btn-d:hover{background:var(--ink3)}
+.btn-o{border:1.5px solid var(--line);background:#fff} .btn-o:hover{border-color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;font-size:12px;font-weight:700}
+.muted{color:var(--mute)}
+/* topbar */
+.topbar{background:var(--ink);color:#C9D1E4;font-size:13px}
+.topbar .wrap{display:flex;gap:28px;height:38px;align-items:center;overflow:hidden;white-space:nowrap}
+.topbar b{color:#fff}.topbar .sp{margin-left:auto;color:var(--y);font-weight:700}
+/* header */
+header.main{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.hrow{display:flex;align-items:center;gap:28px;height:78px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk";font-weight:700;font-size:24px;letter-spacing:-.03em}
+.logo .p{color:var(--ink);background:var(--y);padding:0 6px;border-radius:6px;margin-left:2px}
+.search{flex:1;display:flex;align-items:center;height:50px;border:2px solid var(--ink);border-radius:14px;padding:0 6px 0 16px;gap:10px;position:relative}
+.search input{flex:1;border:0;outline:0;font-size:15px;background:transparent}
+.search .go{height:38px;padding:0 18px;border-radius:10px;background:var(--ink);color:#fff;font-weight:700}
+.sugg{position:absolute;left:-2px;right:-2px;top:52px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:10px;display:none;z-index:50}
+.search:focus-within .sugg{display:block}
+.sugg .t{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--mute);margin:6px 8px}
+.sugg a{display:flex;justify-content:space-between;padding:9px 10px;border-radius:8px}.sugg a:hover{background:var(--bg)}
+.hicons{display:flex;gap:6px}
+.hic{display:flex;flex-direction:column;align-items:center;font-size:11.5px;font-weight:600;padding:6px 10px;border-radius:10px;position:relative;gap:2px}
+.hic:hover{background:var(--bg)}
+.hic svg{width:24px;height:24px}
+.badge{position:absolute;top:0;right:4px;background:var(--y);color:var(--ink);font-size:11px;font-weight:800;min-width:19px;height:19px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+nav.cats{background:#fff;border-bottom:1px solid var(--line)}
+nav.cats .wrap{display:flex;gap:4px;height:48px;align-items:center;overflow-x:auto}
+nav.cats a{padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;white-space:nowrap}
+nav.cats a:hover{background:var(--bg)}
+nav.cats .hot{color:var(--red)}
+/* hero */
+.hero{background:radial-gradient(1200px 500px at 80% -10%,#24345E 0,transparent 60%),linear-gradient(180deg,var(--ink) 0,#0E1730 100%);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:auto -10% -1px -10%;height:80px;background:var(--bg);border-radius:50% 50% 0 0/100% 100% 0 0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;padding-top:56px;padding-bottom:110px;position:relative;z-index:2}
+.hero h1{font-size:54px;line-height:1.02;margin:16px 0 18px}
+.hero h1 em{font-style:normal;color:var(--y)}
+.hero p.lead{font-size:18px;color:#C9D1E4;max-width:520px}
+.snow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:7px 14px;border-radius:99px;font-size:13px;font-weight:600}
+.snow .dot{width:8px;height:8px;border-radius:50%;background:#7CC4FF;box-shadow:0 0 0 4px rgba(124,196,255,.25)}
+.hstats{display:flex;gap:28px;margin-top:30px}
+.hstats div b{display:block;font-family:"Space Grotesk";font-size:28px;color:#fff}
+.hstats div{font-size:13px;color:#9AA6C2}
+.hero-tire{position:absolute;right:-140px;bottom:-160px;width:520px;opacity:.13;z-index:1;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* finder */
+.finder{background:#fff;color:var(--ink);border-radius:20px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.tabs{display:flex;background:var(--bg);border-radius:12px;padding:4px;gap:4px;margin-bottom:18px}
+.tabs button{flex:1;height:40px;border-radius:9px;font-weight:700;font-size:14px;color:var(--mute)}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:var(--sh)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fld label{display:block;font-size:12px;font-weight:700;color:var(--mute);margin-bottom:6px}
+.fld select{width:100%;height:50px;border:1.5px solid var(--line);border-radius:12px;padding:0 12px;font-weight:700;font-size:16px;background:#fff;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230A0F1C' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.fld select:focus{outline:0;border-color:var(--blue)}
+.season{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.season button{border:1.5px solid var(--line);border-radius:12px;height:58px;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.season button span{font-size:18px}
+.season button.on{border-color:var(--ink);background:var(--ink);color:#fff}
+.frow{display:flex;gap:10px;align-items:center}
+.frow .btn{flex:1;height:56px;font-size:16px}
+.help{font-size:13px;color:var(--blue);font-weight:600;display:flex;gap:6px;align-items:center;margin-top:12px;cursor:pointer}
+.sidewall{display:none;margin-top:12px;background:var(--bg);border-radius:12px;padding:14px;font-size:13px}
+.sidewall.on{display:block}
+.sidewall .code{font-family:"Space Grotesk";font-size:26px;font-weight:700;letter-spacing:.02em}
+.sidewall .code span{padding:0 3px;border-radius:5px}
+.sidewall .k{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.sidewall .k div{background:#fff;border-radius:8px;padding:6px 8px}
+/* sections */
+section.blk{padding:56px 0}
+.sh{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px;gap:20px}
+.sh h2{font-size:32px}.sh p{color:var(--mute)}
+.sh a{font-weight:700;color:var(--blue);white-space:nowrap}
+.trust{margin-top:-60px;position:relative;z-index:5}
+.trust .wrap>div{background:#fff;border-radius:18px;box-shadow:var(--sh);display:grid;grid-template-columns:repeat(5,1fr)}
+.trust .it{padding:20px 18px;display:flex;gap:12px;align-items:center;border-right:1px solid var(--line)}
+.trust .it:last-child{border:0}
+.trust .ic{width:42px;height:42px;border-radius:12px;background:#FFF6DB;display:grid;place-items:center;font-size:20px;flex:none}
+.trust b{display:block;font-size:14px}.trust small{color:var(--mute);font-size:12.5px}
+.seasons{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sc{border-radius:18px;padding:22px;min-height:210px;color:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;transition:.2s;cursor:pointer}
+.sc:hover{transform:translateY(-3px)}
+.sc h3{font-size:24px}.sc p{font-size:13px;opacity:.85}
+.sc .ct{position:absolute;top:18px;left:22px;font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:99px}
+.sc svg{position:absolute;right:-50px;top:-40px;width:200px;opacity:.9}
+.sizes{display:flex;flex-wrap:wrap;gap:10px}
+.sizes a{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;font-family:"Space Grotesk";font-weight:700;font-size:17px}
+.sizes a small{display:block;font-family:Inter;font-weight:500;font-size:11.5px;color:var(--mute)}
+.sizes a:hover{border-color:var(--ink)}
+/* product card */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pc{background:#fff;border-radius:16px;border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;position:relative;transition:.15s}
+.pc:hover{box-shadow:var(--sh);border-color:transparent}
+.pc .img{background:linear-gradient(180deg,#F3F4F7,#fff);border-radius:12px;aspect-ratio:1/0.82;display:grid;place-items:center;position:relative;cursor:pointer}
+.pc .img svg{width:72%}
+.pc .tags{position:absolute;top:8px;left:8px;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.pc .fav{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:var(--sh)}
+.pc .fav.on{color:var(--red)}
+.pc .br{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:12px}
+.pc .nm{font-weight:700;font-size:15px;line-height:1.25;margin:2px 0 4px;cursor:pointer}
+.pc .sz{font-family:"Space Grotesk";font-weight:600;font-size:14px}
+.eu{display:flex;gap:5px;margin:10px 0}
+.eu span{display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;background:var(--bg);border-radius:7px;padding:3px 7px}
+.eu i{font-style:normal;color:#fff;border-radius:4px;padding:0 5px;font-size:11px}
+.stock{font-size:12.5px;font-weight:600;display:flex;gap:6px;align-items:center}
+.stock.c{color:var(--green)}.stock.f{color:var(--blue)}
+.pr{margin-top:auto;padding-top:10px;display:flex;align-items:end;justify-content:space-between}
+.pr .p{font-family:"Space Grotesk";font-weight:700;font-size:24px}
+.pr .p sup{font-size:12px}
+.pr .old{font-size:12.5px;color:var(--mute);text-decoration:line-through}
+.pr .set{font-size:12px;color:var(--mute)}
+.add{width:46px;height:46px;border-radius:12px;background:var(--y);display:grid;place-items:center;font-size:22px;font-weight:800}
+.add:hover{background:var(--y2)}
+.cmp{font-size:12px;display:flex;gap:6px;align-items:center;margin-top:10px;color:var(--mute)}
+/* montaj */
+.montaj{background:var(--ink);color:#fff;border-radius:24px;padding:36px;display:grid;grid-template-columns:.9fr 1.1fr;gap:36px}
+.montaj h2{font-size:36px}.montaj p{color:#9AA6C2}
+.svc{display:grid;gap:10px;margin-top:20px}
+.svc label{display:flex;align-items:center;gap:12px;background:var(--ink2);border:1.5px solid var(--ink3);padding:14px;border-radius:12px;cursor:pointer}
+.svc label:has(input:checked){border-color:var(--y)}
+.svc input{accent-color:var(--y);width:18px;height:18px}
+.svc b{flex:1}.svc span{font-family:"Space Grotesk";font-weight:700;color:var(--y)}
+.cal{background:#fff;color:var(--ink);border-radius:18px;padding:22px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:12px 0 18px}
+.days button{border:1.5px solid var(--line);border-radius:12px;padding:8px 0;display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:600;color:var(--mute)}
+.days button b{font-size:20px;color:var(--ink);font-family:"Space Grotesk"}
+.days button.on{background:var(--ink);border-color:var(--ink);color:#C9D1E4}.days button.on b{color:var(--y)}
+.slots{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.slots button{height:42px;border-radius:10px;border:1.5px solid var(--line);font-weight:700}
+.slots button.x{background:var(--bg);color:#B5BAC6;text-decoration:line-through;cursor:not-allowed}
+.slots button.on{background:var(--y);border-color:var(--y)}
+/* SH */
+.shgrid{display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:stretch}
+.shbox{background:linear-gradient(160deg,#0E3B2E,#0A0F1C);color:#fff;border-radius:20px;padding:28px}
+.shbox li{list-style:none;display:flex;gap:10px;margin:12px 0;font-size:14px}
+.gauge{display:flex;gap:4px;align-items:end;height:34px;margin-top:6px}
+.gauge i{width:10px;border-radius:3px;background:#E6E8EE}
+.gauge i.on{background:var(--green)}
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rv{background:#fff;border-radius:16px;padding:20px;border:1px solid var(--line)}
+.rv .st{color:#FDB022;letter-spacing:2px}
+.rv p{margin:10px 0 14px;font-size:14.5px}
+.rv small{color:var(--mute)}
+.gbadge{display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:14px 20px;border:1px solid var(--line)}
+.gbadge b{font-family:"Space Grotesk";font-size:34px}
+.brands{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;opacity:.65}
+.brands span{font-family:"Space Grotesk";font-weight:700;font-size:22px;letter-spacing:.02em}
+/* footer */
+footer{background:var(--ink);color:#9AA6C2;margin-top:40px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding:50px 0}
+footer h4{color:#fff;margin-bottom:12px;font-size:14px}
+footer li{list-style:none;margin:7px 0}
+footer .bot{border-top:1px solid var(--ink3);padding:18px 0;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;gap:20px;flex-wrap:wrap}
+.anpc{display:flex;gap:8px}.anpc span{border:1px solid #3A4566;border-radius:6px;padding:6px 10px;font-weight:700;font-size:11px;color:#C9D1E4}
+.pay{display:flex;gap:6px}.pay span{background:#fff;color:var(--ink);border-radius:5px;padding:3px 8px;font-weight:800;font-size:11px}
+/* floats */
+.wa{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.45);z-index:60;color:#fff}
+.ai{position:fixed;right:92px;bottom:28px;background:#fff;border-radius:99px;padding:10px 16px 10px 10px;display:flex;gap:10px;align-items:center;box-shadow:var(--sh);z-index:60;font-weight:700;font-size:13.5px;border:1px solid var(--line);cursor:pointer}
+.ai .av{width:30px;height:30px;border-radius:50%;background:conic-gradient(var(--y),var(--blue),var(--y));display:grid;place-items:center;color:#fff;font-size:14px}
+.chat{position:fixed;right:22px;bottom:96px;width:370px;background:#fff;border-radius:20px;box-shadow:0 30px 80px rgba(10,15,28,.25);z-index:61;display:none;overflow:hidden;border:1px solid var(--line)}
+.chat.on{display:block}
+.chat .hd{background:var(--ink);color:#fff;padding:16px;display:flex;gap:10px;align-items:center}
+.chat .bd{padding:14px;display:flex;flex-direction:column;gap:10px;max-height:380px;overflow:auto;background:var(--bg)}
+.msg{max-width:85%;padding:10px 12px;border-radius:14px;font-size:13.5px}
+.msg.b{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.u{background:var(--ink);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.mini{display:flex;gap:10px;align-items:center;background:#fff;border-radius:12px;padding:8px;border:1px solid var(--line);margin-top:6px}
+.mini svg{width:46px}
+.chat .ft{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.chat .ft input{flex:1;border:1px solid var(--line);border-radius:10px;padding:0 12px;height:40px}
+/* drawer */
+.ov{position:fixed;inset:0;background:rgba(10,15,28,.5);z-index:80;opacity:0;pointer-events:none;transition:.2s}
+.ov.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:440px;max-width:100%;background:#fff;z-index:81;transform:translateX(100%);transition:.28s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.drawer .hd{padding:20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.drawer .bd{flex:1;overflow:auto;padding:16px 20px}
+.free{background:var(--bg);border-radius:12px;padding:12px;font-size:13px;margin-bottom:14px}
+.bar{height:8px;background:#E6E8EE;border-radius:9px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:9px}
+.ci{display:grid;grid-template-columns:72px 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.ci .im{background:var(--bg);border-radius:10px;padding:6px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;height:34px}
+.qty button{width:30px;height:100%;font-weight:800}
+.qty span{min-width:24px;text-align:center;font-weight:700}
+.ups{border:1.5px dashed var(--y2);background:#FFFBEB;border-radius:12px;padding:12px;margin-top:14px;display:flex;gap:10px;align-items:center;font-size:13.5px}
+.drawer .ft{padding:18px 20px;border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font-size:14px;margin:4px 0}
+.tot.big{font-size:20px;font-weight:800;font-family:"Space Grotesk";margin:10px 0 14px}
+/* catalog */
+.crumb{font-size:13px;color:var(--mute);padding:18px 0 6px}
+.cat{display:grid;grid-template-columns:280px 1fr;gap:24px;padding-bottom:40px}
+.side{background:#fff;border-radius:16px;border:1px solid var(--line);padding:6px 18px;align-self:start;position:sticky;top:150px}
+.fg{border-bottom:1px solid var(--line);padding:14px 0}
+.fg:last-child{border:0}
+.fg h5{font-size:13.5px;margin-bottom:10px;display:flex;justify-content:space-between}
+.fg label{display:flex;align-items:center;gap:9px;font-size:14px;padding:4px 0;cursor:pointer}
+.fg label small{margin-left:auto;color:var(--mute)}
+.fg input[type=checkbox]{width:17px;height:17px;accent-color:var(--ink)}
+.range{display:flex;gap:8px}.range input{width:100%;border:1.5px solid var(--line);border-radius:9px;height:38px;padding:0 10px}
+.tog{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600}
+.sw{width:42px;height:24px;border-radius:99px;background:#D0D5DD;position:relative;transition:.2s;flex:none}
+.sw:after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:#fff;top:2px;left:2px;transition:.2s}
+.sw.on{background:var(--green)}.sw.on:after{left:20px}
+.ctop{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--ink);color:#fff;border-radius:99px;padding:6px 12px;font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.sort{height:42px;border:1.5px solid var(--line);border-radius:10px;padding:0 12px;font-weight:600;background:#fff}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cmpbar{position:fixed;left:50%;bottom:20px;transform:translate(-50%,140%);background:var(--ink);color:#fff;border-radius:16px;padding:12px 14px 12px 20px;display:flex;gap:18px;align-items:center;z-index:59;transition:.25s;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.cmpbar.on{transform:translate(-50%,0)}
+/* product */
+.pd{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding:10px 0 40px}
+.gal{background:#fff;border-radius:20px;border:1px solid var(--line);padding:24px;position:sticky;top:150px;align-self:start}
+.gal .main{aspect-ratio:1.15;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#fff,#EEF0F4);border-radius:14px;position:relative}
+.gal .main svg{width:66%}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs div{width:74px;height:74px;border-radius:12px;border:1.5px solid var(--line);display:grid;place-items:center;background:#F7F8FA}
+.thumbs div.on{border-color:var(--ink)}
+.thumbs svg{width:70%}
+.p360{position:absolute;bottom:14px;right:14px;background:#fff;border-radius:99px;padding:6px 12px;font-size:12px;font-weight:700;box-shadow:var(--sh)}
+.pinfo h1{font-size:34px;line-height:1.1;margin:6px 0}
+.rating{display:flex;gap:8px;align-items:center;font-size:14px}
+.rating .st{color:#FDB022;letter-spacing:1px}
+.pbox{background:#fff;border-radius:18px;border:1px solid var(--line);padding:20px;margin-top:18px}
+.bigp{display:flex;align-items:end;gap:14px}
+.bigp .p{font-family:"Space Grotesk";font-size:44px;font-weight:700;line-height:1}
+.bigp .p sup{font-size:18px}
+.save{background:#FEE4E2;color:var(--red)}
+.setp{background:var(--bg);border-radius:12px;padding:12px 14px;margin:14px 0;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.setp b{font-family:"Space Grotesk";font-size:20px}
+.qrow{display:flex;gap:10px}
+.qrow .qty{height:56px;border-radius:12px}.qrow .qty button{width:42px;font-size:18px}.qrow .qty span{min-width:30px;font-size:18px}
+.qrow .btn{flex:1;height:56px;font-size:16px}
+.opts{display:grid;gap:8px;margin-top:14px}
+.opts label{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;cursor:pointer}
+.opts label:has(input:checked){border-color:var(--ink);background:#FAFBFC}
+.opts input{accent-color:var(--ink);width:18px;height:18px}
+.opts span{margin-left:auto;font-weight:700}
+.dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.dl div{border-radius:12px;background:var(--bg);padding:12px;font-size:13px}
+.dl b{display:block;font-size:14px}
+.rate{display:flex;gap:10px;align-items:center;font-size:13.5px;margin-top:12px;padding:10px 12px;border-radius:12px;background:#EFF4FF;color:#1849A9}
+.eubig{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.eubig div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.eubig .cl{font-family:"Space Grotesk";font-weight:700;font-size:26px;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;margin:6px auto;color:#fff}
+.eubig small{color:var(--mute);font-size:12px}
+.spec{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+.spec td{padding:10px 0;border-bottom:1px solid var(--line)}.spec td:last-child{text-align:right;font-weight:700}
+.fits{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.fits span{background:var(--bg);border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600}
+/* checkout */
+.co{display:grid;grid-template-columns:1fr 400px;gap:28px;padding:10px 0 50px}
+.steps{display:flex;gap:10px;margin:8px 0 20px}
+.steps div{flex:1;height:6px;border-radius:9px;background:#E6E8EE}.steps div.on{background:var(--ink)}
+.cobox{background:#fff;border-radius:18px;border:1px solid var(--line);padding:22px;margin-bottom:16px}
+.cobox h3{font-size:19px;margin-bottom:14px;display:flex;gap:10px;align-items:center}
+.cobox h3 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px}
+.inp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inp div{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:600;color:var(--mute)}
+.inp input{height:48px;border:1.5px solid var(--line);border-radius:11px;padding:0 14px;font-size:15px;color:var(--ink);font-weight:500}
+.inp .full{grid-column:1/-1}
+.ok{border-color:var(--green)!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M3 8l3 3 7-7' stroke='%2312B76A' stroke-width='2.4' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center}
+.radios{display:grid;gap:10px}
+.radios label{display:flex;gap:12px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:14px;cursor:pointer}
+.radios label:has(input:checked){border-color:var(--ink);background:#FAFBFC}
+.radios input{accent-color:var(--ink);width:18px;height:18px}
+.radios b{display:block;font-size:14.5px}.radios small{color:var(--mute)}
+.radios .pr2{margin-left:auto;font-weight:800}
+.sum{background:#fff;border-radius:18px;border:1px solid var(--line);padding:22px;position:sticky;top:150px;align-self:start}
+.secure{display:flex;gap:8px;align-items:center;justify-content:center;font-size:12.5px;color:var(--mute);margin-top:12px}
+.view{display:none}.view.on{display:block}
+.toast{position:fixed;left:50%;top:96px;transform:translate(-50%,-20px);background:var(--ink);color:#fff;border-radius:12px;padding:12px 18px;font-weight:600;z-index:90;opacity:0;transition:.25s;display:flex;gap:10px;align-items:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.demo{position:fixed;left:16px;bottom:16px;z-index:70;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;display:flex;gap:4px;box-shadow:var(--sh);font-size:12px;font-weight:700}
+.demo a{padding:7px 10px;border-radius:9px}.demo a.on{background:var(--ink);color:#fff}
+.demo .l{padding:7px 8px;color:var(--mute)}
+@media(max-width:1000px){
+ .hero .wrap,.montaj,.shgrid,.pd,.co,.cat{grid-template-columns:1fr}
+ .hero h1{font-size:38px}.grid4,.seasons{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(2,1fr)}
+ .trust .wrap>div{grid-template-columns:repeat(2,1fr)}.revs{grid-template-columns:1fr}
+ .hicons .hide-m,.topbar .hide-m{display:none}.side{position:static}.demo{display:none}
+ footer .cols{grid-template-columns:1fr 1fr}
+ .hrow{flex-wrap:wrap;height:auto;padding:10px 0;gap:10px}.search{order:3;flex-basis:100%}.search .go{display:none}.hicons{margin-left:auto}
+ .wrap{padding:0 16px}.hero .wrap{padding-top:32px}.fgrid{grid-template-columns:repeat(3,1fr)}.season{grid-template-columns:repeat(2,1fr)}
+ .hstats{gap:18px}.hstats div b{font-size:22px}.ai{display:none}.chat{width:auto;left:12px}
+}
+@media(max-width:560px){.grid4,.seasons,.grid3,.trust .wrap>div{grid-template-columns:1fr}.slots{grid-template-columns:repeat(3,1fr)}.days{grid-template-columns:repeat(4,1fr)}.montaj{padding:20px}.hero h1{font-size:32px}.sh{flex-direction:column;align-items:start}.inp{grid-template-columns:1fr}}
+body{overflow-x:hidden}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span>🚚 <b>Livrare gratuită</b> la 4 anvelope</span>
+  <span>🔧 <b>Montaj în aceeași zi</b> în Constanța</span>
+  <span class="hide-m">🗓️ Deschis <b>7/7</b> · duminică 09–16</span>
+  <span class="hide-m">💳 Plată în <b>rate fără dobândă</b></span>
+  <span class="sp">📞 0737 476 145</span>
+</div></div>
+
+<header class="main"><div class="wrap hrow">
+  <a href="#home" class="logo" data-go="home"><span id="logoMark"></span><span>ANVELO<span class="p">PORT</span></span></a>
+  <div class="search">
+    <svg width="20" height="20" fill="none" stroke="#6B7385" stroke-width="2"><circle cx="9" cy="9" r="7"/><path d="M14 14l5 5"/></svg>
+    <input placeholder="Caută dimensiunea (ex: 205/55 R16), marca sau modelul mașinii…" value="">
+    <button class="go" data-go="catalog">Caută</button>
+    <div class="sugg">
+      <div class="t">Dimensiuni populare</div>
+      <a href="#catalog" data-go="catalog"><span><b>205/55 R16</b> · iarnă</span><span class="muted">148 produse</span></a>
+      <a href="#catalog" data-go="catalog"><span><b>195/65 R15</b> · iarnă</span><span class="muted">121 produse</span></a>
+      <a href="#catalog" data-go="catalog"><span><b>225/45 R17</b> · all season</span><span class="muted">96 produse</span></a>
+      <div class="t">Mașini</div>
+      <a href="#catalog" data-go="catalog"><span>🚗 Dacia Logan II (2013–2020)</span><span class="muted">185/65 R15</span></a>
+      <a href="#catalog" data-go="catalog"><span>🚗 VW Golf 7 (2012–2019)</span><span class="muted">205/55 R16</span></a>
+    </div>
+  </div>
+  <div class="hicons">
+    <a class="hic hide-m" href="#montaj" data-go="montaj"><svg fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Montaj</a>
+    <a class="hic hide-m"><svg fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>Favorite<span class="badge" id="favN">2</span></a>
+    <a class="hic hide-m"><svg fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Cont</a>
+    <a class="hic" id="cartBtn"><svg fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.4 11.2a2 2 0 002 1.6h7.7a2 2 0 002-1.5L21 8H6"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17.5" cy="20" r="1.3"/></svg><span id="cartT">Coș</span><span class="badge" id="cartN">0</span></a>
+  </div>
+</div></header>
+
+<nav class="cats"><div class="wrap">
+  <a data-go="catalog" data-s="iarna">❄️ Anvelope iarnă</a><a data-go="catalog" data-s="vara">☀️ Anvelope vară</a><a data-go="catalog" data-s="all">🌦️ All season</a>
+  <a data-go="catalog" data-s="sh">♻️ Second hand verificate</a><a data-go="catalog">⚙️ Jante</a><a data-go="catalog">🚙 SUV &amp; 4x4</a><a data-go="catalog">🚐 Utilitare</a>
+  <a data-go="montaj">🔧 Montaj &amp; geometrie</a><a data-go="montaj">🏨 Hotel anvelope</a><a class="hot" data-go="catalog">🔥 Oferte Black Friday</a>
+</div></nav>
+
+<!-- ============ HOME ============ -->
+<main class="view on" id="v-home">
+<section class="hero">
+  <div class="hero-tire" id="heroTire"></div>
+  <div class="wrap">
+    <div>
+      <span class="snow"><span class="dot"></span>Prima ninsoare e prognozată în 9 zile. Ești pregătit?</span>
+      <h1>Anvelope noi și second hand.<br><em>Montate azi</em> în Constanța.<br>Livrate mâine în toată țara.</h1>
+      <p class="lead">Peste 3.000 de anvelope în stoc propriu și 50.000+ la furnizori. Le cauți după dimensiune sau după mașină, vezi prețul pe set și îți programezi montajul în 30 de secunde.</p>
+      <div class="hstats">
+        <div><b>4,5★</b>159 recenzii Google</div>
+        <div><b>53.000+</b>anvelope disponibile</div>
+        <div><b>7/7</b>deschis și duminica</div>
+      </div>
+    </div>
+    <div class="finder">
+      <div class="tabs"><button class="on" data-tab="dim">📐 După dimensiune</button><button data-tab="car">🚗 După mașină</button><button data-tab="sh">♻️ Second hand</button></div>
+      <div id="fDim">
+        <div class="fgrid">
+          <div class="fld"><label>Lățime</label><select id="w"><option>175</option><option>185</option><option>195</option><option selected>205</option><option>215</option><option>225</option><option>235</option></select></div>
+          <div class="fld"><label>Profil</label><select id="h"><option>45</option><option>50</option><option selected>55</option><option>60</option><option>65</option></select></div>
+          <div class="fld"><label>Diametru</label><select id="r"><option>R14</option><option>R15</option><option selected>R16</option><option>R17</option><option>R18</option></select></div>
+        </div>
+      </div>
+      <div id="fCar" style="display:none">
+        <div class="fgrid">
+          <div class="fld"><label>Marcă</label><select><option>Volkswagen</option><option>Dacia</option><option>Skoda</option></select></div>
+          <div class="fld"><label>Model</label><select><option>Golf 7</option><option>Passat B8</option></select></div>
+          <div class="fld"><label>An</label><select><option>2017</option><option>2018</option></select></div>
+        </div>
+      </div>
+      <div class="season">
+        <button class="on" data-se="iarna"><span>❄️</span>Iarnă</button><button data-se="vara"><span>☀️</span>Vară</button><button data-se="all"><span>🌦️</span>All season</button><button data-se="sh"><span>♻️</span>Second hand</button>
+      </div>
+      <div class="frow"><button class="btn btn-y" data-go="catalog" id="findBtn">Vezi 148 de anvelope →</button></div>
+      <div class="help" id="helpBtn">ⓘ Unde găsesc dimensiunea pe anvelopă?</div>
+      <div class="sidewall" id="sidewall">
+        <div class="muted">Uită-te pe flancul anvelopei actuale:</div>
+        <div class="code"><span style="background:#FFF1C2">205</span>/<span style="background:#DDE9FF">55</span> R<span style="background:#D1FADF">16</span> <span style="background:#FDE2E1">91H</span></div>
+        <div class="k"><div><b>205</b><br>lățime mm</div><div><b>55</b><br>profil %</div><div><b>R16</b><br>diametru jantă</div><div><b>91H</b><br>sarcină/viteză</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust"><div class="wrap"><div>
+  <div class="it"><div class="ic">⭐</div><div><b>4,5 / 5 pe Google</b><small>159 recenzii reale</small></div></div>
+  <div class="it"><div class="ic">📦</div><div><b>Stoc propriu</b><small>3.000+ anvelope în Constanța</small></div></div>
+  <div class="it"><div class="ic">🚚</div><div><b>Livrare 24–48h</b><small>Fan Courier, Sameday, easybox</small></div></div>
+  <div class="it"><div class="ic">💳</div><div><b>Card, ramburs, rate</b><small>de la 0% dobândă</small></div></div>
+  <div class="it"><div class="ic">↩️</div><div><b>Retur 30 de zile</b><small>gratuit, fără întrebări</small></div></div>
+</div></div></div>
+
+<section class="blk"><div class="wrap">
+  <div class="sh"><div><h2>Alege sezonul</h2><p>Sau lasă-ne să-ți recomandăm, după cât conduci și unde.</p></div></div>
+  <div class="seasons" id="seasons"></div>
+</div></section>
+
+<section class="blk" style="padding-top:0"><div class="wrap">
+  <div class="sh"><div><h2>Cele mai căutate dimensiuni</h2><p>Un click și vezi tot ce avem, cu prețul pe bucată și pe set.</p></div></div>
+  <div class="sizes">
+    <a data-go="catalog">205/55 R16<small>1.900 căutări/lună</small></a><a data-go="catalog">195/65 R15<small>1.300 căutări/lună</small></a><a data-go="catalog">185/65 R15<small>1.300 căutări/lună</small></a><a data-go="catalog">225/45 R17<small>1.000 căutări/lună</small></a><a data-go="catalog">215/60 R16<small>320 căutări/lună</small></a><a data-go="catalog">205/60 R16<small>SUV &amp; MPV</small></a><a data-go="catalog">215/55 R17<small>SUV compact</small></a><a data-go="catalog">225/40 R18<small>sport</small></a><a data-go="catalog">195/55 R16<small>oraș</small></a><a data-go="catalog">+ toate dimensiunile</a>
+  </div>
+</div></section>
+
+<section class="blk" style="padding-top:0"><div class="wrap">
+  <div class="sh"><div><h2>Cele mai vândute anvelope de iarnă</h2><p>205/55 R16 · prețuri pe bucată, TVA inclus</p></div><a data-go="catalog">Vezi toate →</a></div>
+  <div class="grid4" id="best"></div>
+</div></section>
+
+<section class="blk" style="padding-top:10px"><div class="wrap">
+  <div class="montaj">
+    <div>
+      <span class="pill" style="background:rgba(255,194,26,.15);color:var(--y)">🔧 SERVICE PROPRIU · STR. POPORULUI 94</span>
+      <h2 style="margin:14px 0 10px">Programează montajul online. Fără coadă, fără telefoane.</h2>
+      <p>Cumperi online și vii la ora aleasă: anvelopele te așteaptă pe stand. Lucrăm și duminica.</p>
+      <div class="svc">
+        <label><input type="checkbox" checked><b>Montaj + echilibrare 4 roți</b><span>120 lei</span></label>
+        <label><input type="checkbox"><b>Geometrie 3D</b><span>150 lei</span></label>
+        <label><input type="checkbox"><b>Îndreptat jante (bucata)</b><span>de la 80 lei</span></label>
+        <label><input type="checkbox" checked><b>Hotel anvelope (un sezon)</b><span>150 lei</span></label>
+      </div>
+    </div>
+    <div class="cal">
+      <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:18px">Noiembrie 2026</b><span class="pill" style="background:#D1FADF;color:#067647">● 6 locuri libere azi</span></div>
+      <div class="days" id="days"></div>
+      <div class="muted" style="font-size:13px;margin-bottom:8px;font-weight:600">Ore disponibile</div>
+      <div class="slots" id="slots"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:12px">
+        <div><div class="muted" style="font-size:12.5px">Programarea ta</div><b id="slotTxt">Mier. 26 nov · 10:00 · 270 lei</b></div>
+        <button class="btn btn-d" data-go="montaj">Confirmă programarea</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+  <div class="shgrid">
+    <div class="shbox">
+      <span class="pill" style="background:rgba(18,183,106,.18);color:#6CE9A6">♻️ SECOND HAND VERIFICAT</span>
+      <h2 style="font-size:30px;margin:14px 0 6px">Second hand, dar cu adâncimea profilului la vedere.</h2>
+      <p style="color:#9AA6C2;font-size:14px">Fiecare anvelopă e măsurată, fotografiată și verificată înainte să apară pe site.</p>
+      <ul style="margin-top:10px">
+        <li>📏 <span>Adâncimea profilului măsurată la mm</span></li>
+        <li>📅 <span>Anul fabricației (DOT) afișat clar</span></li>
+        <li>🔍 <span>Fără peticiri, fără umflături, fără tăieturi</span></li>
+        <li>📸 <span>Fotografii reale ale fiecărui set</span></li>
+        <li>🛡️ <span>Garanție de 30 de zile</span></li>
+      </ul>
+    </div>
+    <div class="grid3" id="shList"></div>
+  </div>
+</div></section>
+
+<section class="blk" style="padding-top:10px"><div class="wrap">
+  <div class="sh"><div><h2>Ce spun clienții noștri</h2><p>Recenzii reale de pe Google Maps.</p></div>
+    <div class="gbadge"><b>4,5</b><div><div style="color:#FDB022;letter-spacing:2px">★★★★★</div><small class="muted">159 recenzii · 123 de 5★</small></div></div></div>
+  <div class="revs">
+    <div class="rv"><div class="st">★★★★★</div><p>„Experiență foarte plăcută și servicii de nota 10! Am fost servit prompt și cu profesionalism, chiar dacă era duminică și programul era aproape de final. Am achiziționat de la ei un set de 4 anvelope noi…”</p><small>Recenzie Google · noiembrie 2026</small></div>
+    <div class="rv"><div class="st">★★★★★</div><p>„Sunt francez și trec prin Constanța. Lucrare excelentă. Multe anvelope noi și second-hand. Prețuri foarte bune. Deschis duminica. Îl recomand.”</p><small>Recenzie Google · martie 2026</small></div>
+    <div class="rv"><div class="st">★★★★★</div><p>„Cel mai bun service unde am fost. Pe lângă faptul că au ținut deschis duminica, și rămăsesem cu mașina în pană în Bulgaria, m-au ajutat…”</p><small>Recenzie Google · august 2025</small></div>
+  </div>
+</div></section>
+
+<section class="blk" style="padding-top:10px"><div class="wrap">
+  <div class="brands"><span>MICHELIN</span><span>CONTINENTAL</span><span>BRIDGESTONE</span><span>PIRELLI</span><span>GOODYEAR</span><span>HANKOOK</span><span>NOKIAN</span><span>KLEBER</span><span>NEXEN</span></div>
+</div></section>
+</main>
+
+<!-- ============ CATALOG ============ -->
+<main class="view" id="v-catalog"><div class="wrap">
+  <div class="crumb">Acasă › Anvelope › Iarnă › <b style="color:var(--ink)">205/55 R16</b></div>
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:16px;gap:20px;flex-wrap:wrap">
+    <div><h1 style="font-size:34px">Anvelope iarnă 205/55 R16</h1><div class="muted"><b id="cnt" style="color:var(--ink)">0</b> produse · cea mai populară dimensiune din România (1.900 căutări/lună)</div></div>
+    <div class="gbadge" style="padding:10px 14px"><span style="font-size:22px">🚗</span><div style="font-size:13px"><b style="font-size:14px;font-family:Inter">Se potrivește pe:</b><br><span class="muted">VW Golf 7, Skoda Octavia 3, Ford Focus, Toyota Corolla…</span></div></div>
+  </div>
+  <div class="cat">
+    <aside class="side" id="side">
+      <div class="fg"><div class="tog">📍 Doar în stoc la Constanța<span class="sw" id="swStock"></span></div><div class="muted" style="font-size:12px;margin-top:4px">Ridici sau montezi chiar azi</div></div>
+      <div class="fg"><h5>Sezon</h5><div id="fSeason"></div></div>
+      <div class="fg"><h5>Marcă</h5><div id="fBrand"></div></div>
+      <div class="fg"><h5>Preț / bucată</h5><div class="range"><input value="200 lei"><input value="800 lei"></div></div>
+      <div class="fg"><h5>Clasă</h5><label><input type="checkbox">Premium<small>9</small></label><label><input type="checkbox">Mid-range<small>8</small></label><label><input type="checkbox">Economic<small>6</small></label></div>
+      <div class="fg"><h5>Eticheta UE · frânare pe ud</h5><label><input type="checkbox">Clasa A<small>5</small></label><label><input type="checkbox">Clasa B<small>11</small></label><label><input type="checkbox">Clasa C<small>7</small></label></div>
+      <div class="fg"><h5>Indice viteză</h5><label><input type="checkbox">H (210 km/h)<small>14</small></label><label><input type="checkbox">V (240 km/h)<small>6</small></label><label><input type="checkbox">T (190 km/h)<small>3</small></label></div>
+      <div class="fg"><h5>Tehnologie</h5><label><input type="checkbox">Runflat<small>3</small></label><label><input type="checkbox">XL (ranforsată)<small>8</small></label><label><input type="checkbox">3PMSF ❄️ certificat<small>21</small></label></div>
+      <div class="fg"><h5>An fabricație (DOT)</h5><label><input type="checkbox" checked>2026<small>16</small></label><label><input type="checkbox">2025<small>7</small></label></div>
+    </aside>
+    <div>
+      <div class="ctop">
+        <div class="chips" id="chips"></div>
+        <select class="sort" id="sort"><option value="pop">Cele mai populare</option><option value="asc">Preț crescător</option><option value="desc">Preț descrescător</option><option value="wet">Frânare pe ud (A→E)</option></select>
+      </div>
+      <div class="grid3" id="list"></div>
+    </div>
+  </div>
+</div></main>
+
+<!-- ============ PRODUCT ============ -->
+<main class="view" id="v-product"><div class="wrap">
+  <div class="crumb">Acasă › Anvelope iarnă › 205/55 R16 › <b style="color:var(--ink)" id="pCrumb"></b></div>
+  <div class="pd">
+    <div class="gal">
+      <div class="main" id="pImg"><span class="p360">↻ Vizualizare 360°</span></div>
+      <div class="thumbs" id="pThumbs"></div>
+      <div class="eubig" id="pEU"></div>
+    </div>
+    <div class="pinfo">
+      <div style="display:flex;gap:8px"><span class="pill" style="background:#EFF4FF;color:#1849A9">❄️ Iarnă · 3PMSF</span><span class="pill" style="background:#D1FADF;color:#067647">DOT 2026</span><span class="pill save">-12% Black Friday</span></div>
+      <div class="br" style="font-weight:800;letter-spacing:.08em;color:var(--mute);margin-top:14px" id="pBrand"></div>
+      <h1 id="pName"></h1>
+      <div class="rating"><span class="st">★★★★★</span><b>4,8</b><span class="muted">· 214 recenzii · 37 vândute săptămâna asta</span></div>
+      <div class="pbox">
+        <div class="bigp"><div class="p" id="pPrice"></div><div><div class="muted" style="text-decoration:line-through" id="pOld"></div><div class="muted" style="font-size:13px">/ bucată, TVA inclus</div></div></div>
+        <div class="setp"><span>Set de 4 anvelope <span class="pill" style="background:#D1FADF;color:#067647;margin-left:6px">livrare gratuită</span></span><b id="pSet"></b></div>
+        <div class="stock c" style="font-size:14px">● 12 buc. în stoc la Constanța · <span class="muted" style="font-weight:500">montaj posibil azi de la 14:30</span></div>
+        <div class="qrow" style="margin-top:14px">
+          <div class="qty"><button onclick="pq(-1)">−</button><span id="pq">4</span><button onclick="pq(1)">+</button></div>
+          <button class="btn btn-y" id="pAdd">Adaugă în coș</button>
+          <button class="btn btn-o" style="flex:none;width:56px;padding:0">♡</button>
+        </div>
+        <div class="opts">
+          <label><input type="checkbox" checked>🔧 Montaj + echilibrare în Constanța<span>+120 lei</span></label>
+          <label><input type="checkbox">🏨 Hotel pentru anvelopele de vară<span>+150 lei</span></label>
+          <label><input type="checkbox">🛡️ Asigurare anvelope (pană, tăietură) 12 luni<span>+89 lei</span></label>
+        </div>
+        <div class="rate">💳 <span>Sau <b>de la 172 lei/lună</b> în 12 rate fără dobândă, cu cardul de credit</span></div>
+        <div class="dl"><div>🚚 <b>Livrare joi, 27 nov.</b>dacă comanzi în 3h 12m</div><div>🏪 <b>Ridicare azi</b>Str. Poporului 94, Constanța</div></div>
+      </div>
+      <div class="pbox">
+        <b>Specificații</b>
+        <table class="spec" id="pSpec"></table>
+        <b style="display:block;margin-top:18px">Se potrivește pe</b>
+        <div class="fits"><span>VW Golf 7</span><span>Skoda Octavia 3</span><span>Ford Focus 3</span><span>Toyota Corolla</span><span>Renault Mégane 4</span><span>Hyundai i30</span><span>Opel Astra K</span><span>Mazda 3</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sh"><div><h2>Clienții au cumpărat și</h2></div></div>
+  <div class="grid4" id="also" style="margin-bottom:40px"></div>
+</div></main>
+
+<!-- ============ MONTAJ CONFIRM ============ -->
+<main class="view" id="v-montaj"><div class="wrap" style="padding:60px 24px;max-width:720px;text-align:center">
+  <div style="width:84px;height:84px;border-radius:50%;background:#D1FADF;display:grid;place-items:center;font-size:40px;margin:0 auto 18px">✓</div>
+  <h1 style="font-size:38px">Programarea ta e confirmată.</h1>
+  <p class="muted" style="font-size:17px;margin:10px 0 24px">Miercuri, 26 noiembrie · 10:00 · Str. Poporului 94, Constanța<br>Montaj + echilibrare 4 roți și hotel anvelope · <b style="color:var(--ink)">270 lei</b></p>
+  <div class="cobox" style="text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div>📲 Primești confirmarea pe SMS și pe WhatsApp</div><div>⏰ Îți trimitem un reminder cu o zi înainte</div>
+    <div>🗺️ <a style="color:var(--blue);font-weight:700">Deschide în Google Maps</a></div><div>📅 <a style="color:var(--blue);font-weight:700">Adaugă în calendar</a></div>
+  </div>
+  <button class="btn btn-d" data-go="home">Înapoi la magazin</button>
+</div></main>
+
+<!-- ============ CHECKOUT ============ -->
+<main class="view" id="v-checkout"><div class="wrap">
+  <div class="crumb">Coș › <b style="color:var(--ink)">Finalizare comandă</b></div>
+  <div class="co">
+    <div>
+      <h1 style="font-size:32px">Finalizează comanda</h1>
+      <div class="steps"><div class="on"></div><div class="on"></div><div></div></div>
+      <div class="cobox"><h3><i>1</i>Datele tale</h3>
+        <div class="inp">
+          <div>Telefon<input class="ok" value="0722 123 456"></div><div>Email<input class="ok" value="andrei.popescu@gmail.com"></div>
+          <div>Nume și prenume<input class="ok" value="Andrei Popescu"></div><div>Localitate<input class="ok" value="Constanța"></div>
+          <div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink);font-size:14px"><input type="checkbox" style="height:18px;width:18px;accent-color:var(--ink)"> Vreau factură pe firmă (completăm datele automat din CUI, de la ANAF)</label></div>
+        </div>
+      </div>
+      <div class="cobox"><h3><i>2</i>Cum primești anvelopele</h3>
+        <div class="radios">
+          <label><input type="radio" name="d" checked><div><b>🔧 Ridicare + montaj în Constanța</b><small>Miercuri 26 nov · 10:00 · Str. Poporului 94</small></div><span class="pr2" style="color:var(--green)">GRATUIT</span></label>
+          <label><input type="radio" name="d"><div><b>🚚 Curier la adresă: Fan Courier / Sameday</b><small>Livrare joi, 27 noiembrie</small></div><span class="pr2" style="color:var(--green)">GRATUIT</span></label>
+          <label><input type="radio" name="d"><div><b>📦 Easybox / FANbox</b><small>Alegi lockerul de pe hartă</small></div><span class="pr2">14,99 lei</span></label>
+        </div>
+      </div>
+      <div class="cobox"><h3><i>3</i>Plata</h3>
+        <div class="radios">
+          <label><input type="radio" name="p" checked><div><b>💳 Card online</b><small>Visa, Mastercard, Apple Pay, Google Pay · securizat 3D Secure</small></div></label>
+          <label><input type="radio" name="p"><div><b>📆 Rate fără dobândă</b><small>3–12 rate cu cardul de credit, de la 172 lei/lună</small></div></label>
+          <label><input type="radio" name="p"><div><b>💵 Ramburs / la montaj</b><small>Plătești cash sau cu cardul la livrare</small></div></label>
+        </div>
+      </div>
+    </div>
+    <aside class="sum">
+      <b style="font-size:18px">Sumar comandă</b>
+      <div id="coItems" style="margin:10px 0"></div>
+      <div class="tot"><span>Produse</span><b id="coSub"></b></div>
+      <div class="tot"><span>Montaj + echilibrare</span><b>120 lei</b></div>
+      <div class="tot"><span>Livrare</span><b style="color:var(--green)">Gratuit</b></div>
+      <div class="tot"><span>Reducere Black Friday</span><b style="color:var(--red)">−50 lei</b></div>
+      <div class="tot big"><span>Total</span><span id="coTot"></span></div>
+      <button class="btn btn-y" style="width:100%;height:56px;font-size:16px" onclick="toast('🎉 Demo: comanda ar fi plasată și factura emisă automat în SmartBill')">Plasează comanda</button>
+      <div class="secure">🔒 Plată securizată · Factură automată · e-Factura</div>
+    </aside>
+  </div>
+</div></main>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><a class="logo" style="color:#fff"><span id="logoMark2"></span><span>ANVELO<span class="p">PORT</span></span></a><p style="margin-top:14px;max-width:320px">Anvelope noi și second hand, jante și service roți în Constanța. Livrăm în toată România.</p><p style="margin-top:12px;color:#fff">📍 Str. Poporului 94, Constanța<br>📞 0737 476 145<br>🕗 L–S 08–20 · D 09–16</p></div>
+    <div><h4>Magazin</h4><ul><li>Anvelope iarnă</li><li>Anvelope vară</li><li>All season</li><li>Second hand</li><li>Jante</li></ul></div>
+    <div><h4>Servicii</h4><ul><li>Montaj &amp; echilibrare</li><li>Geometrie 3D</li><li>Îndreptat jante</li><li>Hotel anvelope</li><li>Flote auto</li></ul></div>
+    <div><h4>Ajutor</h4><ul><li>Livrare</li><li>Retur 30 de zile</li><li>Garanție</li><li>Ghid dimensiuni</li><li>Contact</li></ul></div>
+  </div>
+  <div class="bot"><span>© 2026 ANVELOPORT · Machetă realizată de Radu Victor George</span><div class="anpc"><span>ANPC · SAL</span><span>SOL · Soluționarea online a litigiilor</span></div><div class="pay"><span>VISA</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span></div></div>
+</div></footer>
+
+<div class="cmpbar" id="cmpbar"><span><b id="cmpN">2</b> anvelope selectate pentru comparație</span><button class="btn btn-y" style="height:40px" onclick="toast('Demo: comparație anvelope una lângă alta')">Compară →</button></div>
+<div class="ai" id="aiBtn"><span class="av">✦</span>Asistentul pentru anvelope</div>
+<a class="wa" title="WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 00-8.7 14.9L2 22l5.2-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg></a>
+<div class="chat" id="chat">
+  <div class="hd"><span class="av" style="width:36px;height:36px;border-radius:50%;background:conic-gradient(var(--y),var(--blue),var(--y));display:grid;place-items:center">✦</span><div><b>Asistentul ANVELOPORT</b><div style="font-size:12px;color:#9AA6C2">● Online · răspunde instant</div></div><button style="margin-left:auto;font-size:20px" onclick="chat.classList.remove('on')">×</button></div>
+  <div class="bd">
+    <div class="msg b">Salut! 👋 Îmi spui mașina sau dimensiunea și îți găsesc anvelopele potrivite.</div>
+    <div class="msg u">Am Golf 7 din 2017, merg mult pe autostradă. Ce iau de iarnă?</div>
+    <div class="msg b">Pentru Golf 7 dimensiunea e <b>205/55 R16</b>. Pe autostradă îți recomand o anvelopă cu frânare pe ud de clasa A sau B:
+      <div class="mini" id="chatP1"></div><div class="mini" id="chatP2"></div>
+      Ambele sunt în stoc la Constanța. Îți programez și montajul?</div>
+  </div>
+  <div class="ft"><input placeholder="Scrie un mesaj…"><button class="btn btn-y" style="height:40px;padding:0 14px">↑</button></div>
+</div>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer">
+  <div class="hd"><b style="font-size:19px">Coșul tău <span class="muted" id="dN"></span></b><button style="font-size:26px" onclick="closeCart()">×</button></div>
+  <div class="bd">
+    <div class="free" id="free"></div>
+    <div id="dItems"></div>
+    <div class="ups"><span style="font-size:24px">🔧</span><div style="flex:1"><b>Adaugă montajul în Constanța</b><br><span class="muted">Montaj + echilibrare · azi de la 14:30</span></div><button class="btn btn-d" style="height:36px;padding:0 12px" onclick="toast('Montaj adăugat ✓')">+120 lei</button></div>
+    <div class="ups" style="border-color:#B2CCFF;background:#EFF4FF"><span style="font-size:24px">🏨</span><div style="flex:1"><b>Hotel pentru anvelopele de vară</b><br><span class="muted">Le păstrăm noi până în primăvară</span></div><button class="btn btn-d" style="height:36px;padding:0 12px" onclick="toast('Hotel anvelope adăugat ✓')">+150 lei</button></div>
+  </div>
+  <div class="ft">
+    <div class="tot"><span>Subtotal</span><b id="dSub"></b></div>
+    <div class="tot"><span>Livrare</span><b style="color:var(--green)">Gratuit</b></div>
+    <div class="tot big"><span>Total</span><span id="dTot"></span></div>
+    <button class="btn btn-y" style="width:100%;height:54px" data-go="checkout">Finalizează comanda →</button>
+    <div class="secure">sau 12 rate fără dobândă · retur gratuit 30 de zile</div>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<div class="demo"><span class="l">MACHETĂ:</span><a data-go="home" class="on">Acasă</a><a data-go="catalog">Catalog</a><a data-go="product">Produs</a><a id="demoCart">Coș</a><a data-go="checkout">Checkout</a><a data-go="montaj">Programare</a></div>
+
+<script>
+const COLORS={A:'#00A651',B:'#4CB848',C:'#BFD730',D:'#FFF200',E:'#F7941D'};
+function tire(o={}){
+  const id='t'+Math.random().toString(36).slice(2,7), brand=(o.brand||'ANVELOPORT').toUpperCase(), model=(o.model||'').toUpperCase(), size=o.size||'205/55 R16 91H';
+  const spokes=o.spokes||5, rimC=o.rim||'#C8CDD6';
+  let sp='';for(let i=0;i<spokes;i++){const a=i*360/spokes;sp+=`<path d="M100 100 L93 46 Q100 40 107 46 Z" fill="url(#${id}r)" transform="rotate(${a} 100 100)"/>`}
+  let tr='';for(let i=0;i<72;i++){tr+=`<rect x="98" y="2" width="4" height="9" rx="1.5" fill="#0d0f14" transform="rotate(${i*5} 100 100)"/>`}
+  return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs>
+  <radialGradient id="${id}g" cx="40%" cy="35%"><stop offset="0" stop-color="#3a3f4a"/><stop offset=".7" stop-color="#1a1d24"/><stop offset="1" stop-color="#0b0c10"/></radialGradient>
+  <linearGradient id="${id}r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="${rimC}"/><stop offset="1" stop-color="#7d8592"/></linearGradient>
+  <path id="${id}p" d="M100 100 m-70 0 a70 70 0 1 1 140 0 a70 70 0 1 1 -140 0"/>
+  <path id="${id}q" d="M100 100 m-74 0 a74 74 0 1 0 148 0"/></defs>
+  <circle cx="100" cy="100" r="98" fill="url(#${id}g)"/>${tr}
+  <circle cx="100" cy="100" r="86" fill="none" stroke="#2a2e37" stroke-width="1.2"/>
+  <text font-family="Space Grotesk,Arial" font-weight="700" font-size="10.5" fill="#E7E9EE" letter-spacing="2.5"><textPath href="#${id}p" startOffset="2%">${brand}</textPath></text>
+  <text font-family="Space Grotesk,Arial" font-weight="600" font-size="7" fill="#9aa1ad" letter-spacing="1.5"><textPath href="#${id}p" startOffset="27%">${model}</textPath></text>
+  <text font-family="Space Grotesk,Arial" font-weight="700" font-size="8" fill="#c8ccd4" letter-spacing="1.5"><textPath href="#${id}q" startOffset="55%">${size}</textPath></text>
+  <circle cx="100" cy="100" r="62" fill="#5d636f"/><circle cx="100" cy="100" r="58" fill="#1b1e25"/>
+  ${sp}<circle cx="100" cy="100" r="58" fill="none" stroke="url(#${id}r)" stroke-width="5"/>
+  <circle cx="100" cy="100" r="15" fill="url(#${id}r)"/><circle cx="100" cy="100" r="7" fill="#2a2e37"/>
+  ${o.sh?'':''}</svg>`;
+}
+const P=[
+ {id:1,b:'Michelin',m:'Alpin 6',s:'iarna',p:569,o:649,eu:['C','A',69],c:'prem',st:'c',rim:'#D9DEE6',sp:5,r:4.8},
+ {id:2,b:'Continental',m:'WinterContact TS 870',s:'iarna',p:539,o:599,eu:['C','A',71],c:'prem',st:'c',rim:'#E8C15A',sp:6,r:4.9},
+ {id:3,b:'Bridgestone',m:'Blizzak 6',s:'iarna',p:489,o:539,eu:['C','A',71],c:'prem',st:'f',rim:'#B9C0CC',sp:10,r:4.7},
+ {id:4,b:'Goodyear',m:'UltraGrip Performance 3',s:'iarna',p:479,o:529,eu:['C','B',70],c:'prem',st:'c',rim:'#9AA3B1',sp:7,r:4.7},
+ {id:5,b:'Pirelli',m:'Cinturato Winter 2',s:'iarna',p:459,o:499,eu:['C','B',70],c:'prem',st:'f',rim:'#E05A4E',sp:5,r:4.6},
+ {id:6,b:'Nokian',m:'Snowproof 2',s:'iarna',p:449,o:489,eu:['C','B',71],c:'prem',st:'f',rim:'#C8CDD6',sp:6,r:4.8},
+ {id:7,b:'Hankook',m:'Winter i*cept RS3',s:'iarna',p:349,o:389,eu:['C','B',71],c:'mid',st:'c',rim:'#D9DEE6',sp:5,r:4.6},
+ {id:8,b:'Kleber',m:'Krisalp HP3',s:'iarna',p:329,o:359,eu:['D','B',71],c:'mid',st:'c',rim:'#8F98A6',sp:8,r:4.5},
+ {id:9,b:'Kumho',m:'WinterCraft WP52',s:'iarna',p:309,o:339,eu:['C','B',70],c:'mid',st:'c',rim:'#C8CDD6',sp:5,r:4.5},
+ {id:10,b:'Nexen',m:'Winguard Sport 2',s:'iarna',p:279,o:309,eu:['D','B',72],c:'eco',st:'c',rim:'#B9C0CC',sp:6,r:4.4},
+ {id:11,b:'Debica',m:'Frigo HP2',s:'iarna',p:259,o:289,eu:['D','C',71],c:'eco',st:'c',rim:'#9AA3B1',sp:5,r:4.3},
+ {id:12,b:'Tigar',m:'Winter',s:'iarna',p:239,o:269,eu:['D','C',72],c:'eco',st:'c',rim:'#C8CDD6',sp:7,r:4.3},
+ {id:13,b:'Michelin',m:'CrossClimate 2',s:'all',p:589,o:639,eu:['B','A',69],c:'prem',st:'c',rim:'#E8C15A',sp:5,r:4.9},
+ {id:14,b:'Goodyear',m:'Vector 4Seasons Gen-3',s:'all',p:469,o:509,eu:['C','B',69],c:'prem',st:'f',rim:'#C8CDD6',sp:10,r:4.7},
+ {id:15,b:'Hankook',m:'Kinergy 4S2',s:'all',p:359,o:389,eu:['C','B',71],c:'mid',st:'c',rim:'#9AA3B1',sp:5,r:4.6},
+ {id:16,b:'Continental',m:'PremiumContact 7',s:'vara',p:499,o:549,eu:['B','A',71],c:'prem',st:'f',rim:'#D9DEE6',sp:6,r:4.9},
+];
+const SH=[
+ {id:101,b:'Michelin',m:'Alpin 6 · set 4 buc.',mm:7.5,dot:'2024',p:180,rim:'#C8CDD6',sp:5},
+ {id:102,b:'Continental',m:'WinterContact TS 860 · set 4',mm:6.8,dot:'2023',p:160,rim:'#9AA3B1',sp:6},
+ {id:103,b:'Hankook',m:'Winter i*cept RS2 · pereche',mm:7.0,dot:'2023',p:120,rim:'#D9DEE6',sp:5},
+];
+const lei=n=>n.toLocaleString('ro-RO')+' lei';
+const cart=[];let favs=new Set([2,7]);let cmp=new Set();
+function euHtml(e){return `<div class="eu"><span>⛽<i style="background:${COLORS[e[0]]};${e[0]=='D'?'color:#000':''}">${e[0]}</i></span><span>🌧️<i style="background:${COLORS[e[1]]}">${e[1]}</i></span><span>🔊 ${e[2]} dB</span></div>`}
+function card(x){
+  return `<div class="pc">
+   <div class="img" onclick="openP(${x.id})">${tire({brand:x.b,model:x.m,rim:x.rim,spokes:x.sp})}
+    <div class="tags">${x.o?`<span class="pill save">-${Math.round((1-x.p/x.o)*100)}%</span>`:''}${x.st=='c'?'<span class="pill" style="background:#D1FADF;color:#067647">📍 Montaj azi</span>':''}</div>
+    <button class="fav ${favs.has(x.id)?'on':''}" onclick="event.stopPropagation();fav(${x.id},this)">${favs.has(x.id)?'♥':'♡'}</button></div>
+   <div class="br">${x.b}</div><div class="nm" onclick="openP(${x.id})">${x.m}</div><div class="sz">205/55 R16 91H ${x.s=='iarna'?'· ❄️':x.s=='all'?'· 🌦️':'· ☀️'}</div>
+   ${euHtml(x.eu)}
+   <div class="stock ${x.st}">${x.st=='c'?'● În stoc Constanța · 12 buc.':'● La furnizor · livrare în 24–48h'}</div>
+   <div class="pr"><div>${x.o?`<div class="old">${lei(x.o)}</div>`:''}<div class="p">${x.p}<sup> lei</sup></div><div class="set">Set 4: <b>${lei(x.p*4)}</b></div></div><button class="add" onclick="add(${x.id})">+</button></div>
+   <label class="cmp"><input type="checkbox" ${cmp.has(x.id)?'checked':''} onchange="tc(${x.id},this.checked)"> Compară</label>
+  </div>`}
+function shCard(x){
+  const bars=Array.from({length:8},(_,i)=>`<i class="${i<Math.round(x.mm)?'on':''}" style="height:${10+i*3}px"></i>`).join('');
+  return `<div class="pc"><div class="img">${tire({brand:x.b,model:'SECOND HAND',rim:x.rim,spokes:x.sp})}<div class="tags"><span class="pill" style="background:#D1FADF;color:#067647">♻️ Verificat</span></div></div>
+  <div class="br">${x.b}</div><div class="nm">${x.m}</div><div class="sz">205/55 R16 · DOT ${x.dot}</div>
+  <div style="display:flex;justify-content:space-between;align-items:end;margin-top:8px"><div><div class="muted" style="font-size:12px;font-weight:600">Profil: <b style="color:var(--green)">${x.mm} mm</b> / 8 mm</div><div class="gauge">${bars}</div></div></div>
+  <div class="pr"><div><div class="p">${x.p}<sup> lei</sup></div><div class="set">/ bucată</div></div><button class="add" onclick="toast('Adăugat în coș ✓')">+</button></div></div>`}
+function render(){
+  document.getElementById('best').innerHTML=[1,2,7,10].map(i=>card(P.find(p=>p.id==i))).join('');
+  document.getElementById('shList').innerHTML=SH.map(shCard).join('');
+  const S=[['iarna','Iarnă','❄️ 2.340 produse','Aderență pe zăpadă și gheață. Obligatorii pe drum înzăpezit.','linear-gradient(150deg,#1849A9,#0A0F1C)'],['vara','Vară','☀️ 1.980 produse','Frânare scurtă pe asfalt fierbinte și consum mic.','linear-gradient(150deg,#DC6803,#7A2E0E)'],['all','All season','🌦️ 860 produse','O singură garnitură tot anul. Ideal la oraș.','linear-gradient(150deg,#067647,#0A0F1C)'],['sh','Second hand','♻️ 640 seturi','Verificate, măsurate, cu garanție de 30 de zile.','linear-gradient(150deg,#3E4784,#0A0F1C)']];
+  document.getElementById('seasons').innerHTML=S.map(s=>`<div class="sc" style="background:${s[4]}" data-go="catalog"><span class="ct">${s[2]}</span>${tire({brand:'',model:'',size:'',spokes:5})}<h3>${s[1]}</h3><p>${s[3]}</p></div>`).join('');
+  document.getElementById('heroTire').innerHTML=tire({brand:'ANVELOPORT · CONSTANȚA',model:'NOI · SECOND HAND · MONTAJ',spokes:6});
+  const lm=`<span style="width:34px;height:34px;display:inline-block">${tire({brand:'',model:'',size:'',spokes:5,rim:'#FFC21A'})}</span>`;
+  document.getElementById('logoMark').innerHTML=lm;document.getElementById('logoMark2').innerHTML=lm;
+  // days
+  const dn=['Mie','Joi','Vin','Sâm','Dum','Lun','Mar'];
+  document.getElementById('days').innerHTML=dn.map((d,i)=>`<button class="${i==0?'on':''}">${d}<b>${26+i>30?26+i-30:26+i}</b>${i==4?'<span style="font-size:10px;color:var(--green)">deschis</span>':''}</button>`).join('');
+  const sl=['08:00','09:00','10:00','11:00','12:00','13:00','14:30','15:30','16:30','18:00'];const x=[0,1,4,5];
+  document.getElementById('slots').innerHTML=sl.map((s,i)=>`<button class="${x.includes(i)?'x':''} ${i==2?'on':''}">${s}</button>`).join('');
+  document.querySelectorAll('#days button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#days button').forEach(z=>z.classList.remove('on'));b.classList.add('on')});
+  document.querySelectorAll('#slots button:not(.x)').forEach(b=>b.onclick=()=>{document.querySelectorAll('#slots button').forEach(z=>z.classList.remove('on'));b.classList.add('on');document.getElementById('slotTxt').textContent=document.querySelector('#days .on').childNodes[0].textContent+'. '+document.querySelector('#days .on b').textContent+' nov · '+b.textContent+' · 270 lei'});
+  const m=(x)=>`${tire({brand:x.b,model:'',spokes:x.sp,rim:x.rim})}<div style="flex:1"><b style="font-size:13px">${x.b} ${x.m}</b><div style="font-size:12px" class="muted">Frânare pe ud ${x.eu[1]} · ${x.p} lei/buc.</div></div><button class="add" style="width:34px;height:34px;font-size:16px" onclick="add(${x.id})">+</button>`;
+  document.getElementById('chatP1').innerHTML=m(P[1]);document.getElementById('chatP2').innerHTML=m(P[6]);
+  renderCat();
+}
+// catalog filters
+let F={s:new Set(['iarna']),b:new Set(),stock:false,sort:'pop'};
+function renderCat(){
+  const seasons=[['iarna','❄️ Iarnă'],['all','🌦️ All season'],['vara','☀️ Vară']];
+  document.getElementById('fSeason').innerHTML=seasons.map(s=>`<label><input type="checkbox" ${F.s.has(s[0])?'checked':''} onchange="tg('s','${s[0]}')">${s[1]}<small>${P.filter(p=>p.s==s[0]).length}</small></label>`).join('');
+  const brands=[...new Set(P.map(p=>p.b))];
+  document.getElementById('fBrand').innerHTML=brands.map(b=>`<label><input type="checkbox" ${F.b.has(b)?'checked':''} onchange="tg('b','${b}')">${b}<small>${P.filter(p=>p.b==b).length}</small></label>`).join('');
+  let L=P.filter(p=>(!F.s.size||F.s.has(p.s))&&(!F.b.size||F.b.has(p.b))&&(!F.stock||p.st=='c'));
+  if(F.sort=='asc')L.sort((a,b)=>a.p-b.p);if(F.sort=='desc')L.sort((a,b)=>b.p-a.p);if(F.sort=='wet')L.sort((a,b)=>a.eu[1].localeCompare(b.eu[1]));
+  document.getElementById('list').innerHTML=L.map(card).join('');
+  document.getElementById('cnt').textContent=L.length;
+  const ch=['205/55 R16',...[...F.s].map(s=>({iarna:'Iarnă',vara:'Vară',all:'All season'})[s]),...F.b,...(F.stock?['În stoc Constanța']:[])];
+  document.getElementById('chips').innerHTML=ch.map(c=>`<span class="chip">${c} <span style="opacity:.6">×</span></span>`).join('')+'<a style="font-size:13px;font-weight:700;color:var(--blue);align-self:center;cursor:pointer" onclick="F.s.clear();F.b.clear();F.stock=false;sw.classList.remove(\'on\');renderCat()">Șterge filtrele</a>';
+}
+function tg(k,v){F[k].has(v)?F[k].delete(v):F[k].add(v);renderCat()}
+const sw=document.getElementById('swStock');sw.onclick=()=>{F.stock=!F.stock;sw.classList.toggle('on',F.stock);renderCat()};
+document.getElementById('sort').onchange=e=>{F.sort=e.target.value;renderCat()};
+// product
+let cur=P[1],qty=4;
+function openP(id){cur=P.find(p=>p.id==id)||P[1];qty=4;fillP();go('product')}
+function fillP(){
+  const x=cur;
+  document.getElementById('pImg').innerHTML=tire({brand:x.b,model:x.m,rim:x.rim,spokes:x.sp})+'<span class="p360">↻ Vizualizare 360°</span>';
+  document.getElementById('pThumbs').innerHTML=[0,1,2,3].map(i=>`<div class="${i==0?'on':''}">${tire({brand:x.b,model:'',rim:x.rim,spokes:x.sp})}</div>`).join('');
+  document.getElementById('pEU').innerHTML=`<div><small>Consum</small><div class="cl" style="background:${COLORS[x.eu[0]]};${x.eu[0]=='D'?'color:#000':''}">${x.eu[0]}</div><small>rezistență la rulare</small></div><div><small>Frânare pe ud</small><div class="cl" style="background:${COLORS[x.eu[1]]}">${x.eu[1]}</div><small>aderență</small></div><div><small>Zgomot</small><div class="cl" style="background:var(--ink)">🔊</div><small>${x.eu[2]} dB · clasa B</small></div>`;
+  document.getElementById('pBrand').textContent=x.b.toUpperCase();
+  document.getElementById('pName').textContent=x.b+' '+x.m+' 205/55 R16 91H';
+  document.getElementById('pCrumb').textContent=x.b+' '+x.m;
+  document.getElementById('pPrice').innerHTML=x.p+'<sup> lei</sup>';
+  document.getElementById('pOld').textContent=lei(x.o);
+  document.getElementById('pq').textContent=qty;
+  document.getElementById('pSet').textContent=lei(x.p*4);
+  document.getElementById('pSpec').innerHTML=[['Dimensiune','205/55 R16'],['Indice sarcină / viteză','91 (615 kg) / H (210 km/h)'],['Sezon','Iarnă · marcaj 3PMSF ❄️'],['An fabricație','DOT 2026 (săpt. 18)'],['Runflat / XL','Nu / Nu'],['Garanție','5 ani de la fabricație'],['Cod EAN','4019238069891']].map(r=>`<tr><td class="muted">${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+  document.getElementById('also').innerHTML=P.filter(p=>p.id!=x.id&&p.s=='iarna').slice(0,4).map(card).join('');
+  document.getElementById('pAdd').onclick=()=>{for(let i=0;i<qty;i++)add(x.id,true);openCart()};
+}
+function pq(d){qty=Math.max(1,qty+d);document.getElementById('pq').textContent=qty}
+// cart
+function add(id,silent){const x=P.find(p=>p.id==id);const it=cart.find(c=>c.id==id);it?it.q++:cart.push({id,q:silent?1:4,x});updCart();if(!silent){toast('✓ '+x.b+' '+x.m+' · 4 buc. adăugate în coș');}}
+function updCart(){
+  const n=cart.reduce((a,c)=>a+c.q,0),sub=cart.reduce((a,c)=>a+c.q*c.x.p,0);
+  document.getElementById('cartN').textContent=n;document.getElementById('cartT').textContent=sub?lei(sub):'Coș';
+  document.getElementById('dN').textContent='('+n+' buc.)';
+  document.getElementById('dItems').innerHTML=cart.map(c=>`<div class="ci"><div class="im">${tire({brand:c.x.b,model:'',rim:c.x.rim,spokes:c.x.sp})}</div><div><b style="font-size:14px">${c.x.b} ${c.x.m}</b><div class="muted" style="font-size:12.5px">205/55 R16 91H · ❄️ · DOT 2026</div><div class="qty" style="margin-top:6px"><button onclick="cq(${c.id},-1)">−</button><span>${c.q}</span><button onclick="cq(${c.id},1)">+</button></div></div><b>${lei(c.q*c.x.p)}</b></div>`).join('')||'<p class="muted">Coșul e gol.</p>';
+  const left=Math.max(0,4-n);
+  document.getElementById('free').innerHTML=left?`Mai adaugă <b>${left} anvelope</b> și livrarea e gratuită.<div class="bar"><i style="width:${n/4*100}%"></i></div>`:`🎉 Ai <b>livrare gratuită</b> și montaj prioritar.<div class="bar"><i style="width:100%"></i></div>`;
+  document.getElementById('dSub').textContent=lei(sub);document.getElementById('dTot').textContent=lei(sub);
+  document.getElementById('coItems').innerHTML=cart.map(c=>`<div class="ci" style="grid-template-columns:54px 1fr auto"><div class="im">${tire({brand:c.x.b,model:'',rim:c.x.rim,spokes:c.x.sp})}</div><div style="font-size:13.5px"><b>${c.x.b} ${c.x.m}</b><div class="muted">${c.q} × ${lei(c.x.p)}</div></div><b>${lei(c.q*c.x.p)}</b></div>`).join('');
+  document.getElementById('coSub').textContent=lei(sub);document.getElementById('coTot').textContent=lei(sub+120-50);
+}
+function cq(id,d){const c=cart.find(c=>c.id==id);c.q+=d;if(c.q<=0)cart.splice(cart.indexOf(c),1);updCart()}
+const ov=document.getElementById('ov'),dr=document.getElementById('drawer'),chat=document.getElementById('chat');
+function openCart(){if(!cart.length)add(2,false);ov.classList.add('on');dr.classList.add('on')}
+function closeCart(){ov.classList.remove('on');dr.classList.remove('on')}
+document.getElementById('cartBtn').onclick=openCart;document.getElementById('demoCart').onclick=openCart;ov.onclick=closeCart;
+function fav(id,el){favs.has(id)?favs.delete(id):favs.add(id);el.classList.toggle('on');el.textContent=favs.has(id)?'♥':'♡';document.getElementById('favN').textContent=favs.size}
+function tc(id,on){on?cmp.add(id):cmp.delete(id);document.getElementById('cmpN').textContent=cmp.size;document.getElementById('cmpbar').classList.toggle('on',cmp.size>1)}
+let tt;function toast(t){const e=document.getElementById('toast');e.innerHTML=t;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2200)}
+// routing
+function go(v){closeCart();document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id=='v-'+v));document.querySelectorAll('.demo a[data-go]').forEach(a=>a.classList.toggle('on',a.dataset.go==v));if(v=='checkout'&&!cart.length){add(2,true);add(2,true);add(2,true);add(2,true)}if(v=='product')fillP();scrollTo({top:0});history.replaceState(null,'','#'+v)}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();if(a.dataset.s){F.s=new Set([a.dataset.s=='sh'?'iarna':a.dataset.s]);renderCat()}go(a.dataset.go)});
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(z=>z.classList.remove('on'));b.classList.add('on');document.getElementById('fDim').style.display=b.dataset.tab=='car'?'none':'';document.getElementById('fCar').style.display=b.dataset.tab=='car'?'':'none'});
+document.querySelectorAll('.season button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.season button').forEach(z=>z.classList.remove('on'));b.classList.add('on');const n={iarna:148,vara:131,all:96,sh:64}[b.dataset.se];document.getElementById('findBtn').textContent='Vezi '+n+' de anvelope →';F.s=new Set([b.dataset.se=='sh'?'iarna':b.dataset.se]);renderCat()});
+document.querySelectorAll('.fld select').forEach(s=>s.onchange=()=>{document.getElementById('findBtn').textContent='Vezi '+(40+Math.floor(Math.random()*140))+' de anvelope →'});
+document.getElementById('helpBtn').onclick=()=>document.getElementById('sidewall').classList.toggle('on');
+document.getElementById('aiBtn').onclick=()=>chat.classList.toggle('on');
+render();updCart();
+const h=location.hash.slice(1);if(['catalog','product','checkout','montaj'].includes(h))go(h);
+if(location.search.includes('cart'))openCart();
+if(location.search.includes('chat'))chat.classList.add('on');
+if(location.search.includes('cmp')){tc(1,true);tc(2,true);renderCat()}
+</script>
+</body>
+</html>
